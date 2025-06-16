@@ -1,0 +1,47 @@
+.history-element-container {
+  position: relative;
+  width: 336px;
+  margin: 0 27px;
+}
+
+.history-element-scroll {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-grow: 1;
+  width: 100%;
+  max-height: 140px;
+  height: 140px;
+  overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.history-element-content {
+  width: fit-content;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.history-element-item {
+  width: fit-content;
+  font-size: 28px;
+  margin: 0;
+  padding-left: 5px;
+  letter-spacing: 0;
+  line-height: 100%;
+}
+
+.history-element-fade {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+  background: linear-gradient(to right, #e7e7e7 30%, transparent);
+  z-index: 1;
+}
