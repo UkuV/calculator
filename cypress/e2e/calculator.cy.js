@@ -1,5 +1,3 @@
-// Example test for the Calculator app
-
 describe("Calculator App", () => {
   beforeEach(() => {
     cy.visit("/");
@@ -71,13 +69,13 @@ describe("Calculator App", () => {
   it("should switch to Exchange Rate page and render UI", () => {
     cy.contains("button", "Exchange Rate").click({ force: true });
     cy.get(".currency-container").should("exist");
-    cy.get(".currency-select").should("have.length", 2);
+    cy.get(".currency-select", { timeout: 10000 }).should("have.length", 2);
   });
 
   it("should switch to Exchange Rate and perform a conversion", () => {
     cy.contains("button", "Exchange Rate").click({ force: true });
-    cy.get(".currency-select").first().select(1);
-    cy.get(".currency-select").last().select(1);
+    cy.get(".currency-select", { timeout: 10000 }).first().select(1);
+    cy.get(".currency-select", { timeout: 10000 }).last().select(1);
     cy.get('[data-cy="keypad-btn-1"]').click();
     cy.get('[data-cy="keypad-btn-0"]').click();
     cy.get('[data-cy="keypad-btn-0"]').click();
@@ -86,8 +84,8 @@ describe("Calculator App", () => {
 
   it("should clear the Exchange Rate input using C", () => {
     cy.contains("button", "Exchange Rate").click({ force: true });
-    cy.get(".currency-select").first().select(1);
-    cy.get(".currency-select").last().select(1);
+    cy.get(".currency-select", { timeout: 10000 }).first().select(1);
+    cy.get(".currency-select", { timeout: 10000 }).last().select(1);
     cy.get('[data-cy="keypad-btn-1"]').click();
     cy.get('[data-cy="keypad-btn-0"]').click();
     cy.get('[data-cy="keypad-btn-0"]').click();
@@ -98,8 +96,8 @@ describe("Calculator App", () => {
 
   it("should use backspace on Exchange Rate input", () => {
     cy.contains("button", "Exchange Rate").click({ force: true });
-    cy.get(".currency-select").first().select(1);
-    cy.get(".currency-select").last().select(1);
+    cy.get(".currency-select", { timeout: 10000 }).first().select(1);
+    cy.get(".currency-select", { timeout: 10000 }).last().select(1);
     cy.get('[data-cy="keypad-btn-1"]').click();
     cy.get('[data-cy="keypad-btn-2"]').click();
     cy.get('[data-cy="keypad-btn-3"]').click();
@@ -111,5 +109,14 @@ describe("Calculator App", () => {
     cy.contains("button", "Exchange Rate").click({ force: true });
     cy.get(".refresh-button").click({ force: true });
     cy.get(".refresh-button").should("contain.text", "Last Updated");
+  });
+
+  it("should show loading indicator while fetching exchange rates", () => {
+    cy.contains("button", "Exchange Rate").click({ force: true });
+    cy.get(".refresh-button").click({ force: true });
+    cy.get(".currency-container").within(() => {
+      cy.get(".MuiCircularProgress-root").should("exist");
+      cy.contains("Loading exchange rates...").should("exist");
+    });
   });
 });

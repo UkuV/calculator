@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import "../css/Currency.css";
 import { ReloadIcon } from "../icons/reload";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const getExRate = async () => {
   try {
@@ -222,7 +223,12 @@ const Currency = () => {
             </div>
           </>
         ) : (
-          "Loading..."
+          <div
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: 32 }}
+          >
+            <CircularProgress />
+            <span style={{ marginTop: 16 }}>Loading exchange rates...</span>
+          </div>
         )}
       </div>
       <div className="refresh-container">
