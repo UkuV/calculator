@@ -1,0 +1,30 @@
+{
+  "name": "test-calc",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5173",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:e2e": "start-server-and-test dev http://localhost:5173 'cypress run --e2e'"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.1.1",
+    "mathjs": "^14.5.2",
+    "miragejs": "^0.1.48",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "cypress": "^14.4.1",
+    "prettier": "3.2.5",
+    "start-server-and-test": "^2.0.12",
+    "vite": "^5.2.0"
+  }
+}
